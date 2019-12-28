@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cb.springdata</groupId>
-	<artifactId>kubernetes-starter-kit</artifactId>
+	<artifactId>couchmovies-movieservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>kubernetes-starter-kit</name>
-	<description>Demo project for Spring Boot and Kubernetes</description>
+	<name>couchmovies-movieservice</name>
+	<description>Couchbase Demo for N1QL, FTS and Analytics</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -21,7 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <docker.image.prefix>deniswsrosa</docker.image.prefix>
+        <docker.image.prefix>couchmovies</docker.image.prefix>
 		<java.version>1.8</java.version>
 	</properties>
 
