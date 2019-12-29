@@ -2,11 +2,18 @@ version: "3"
 services:
   couchbase:
     container_name: couchmovies_server
-    image: couchmovies_server
-    build: 
-      context: ./couchbase
-      dockerfile: Dockerfile
+    image: couchbase:latest
     ports:
       - "8091-8096:8091-8096"
       - "11210-11211:11210-11211"
+  movieservice:
+    container_name: couchmovies_service
+    image: couchmovies_service
+    depends_on: 
+      - couchbase
+    build: 
+      context: ./movieservice
+      dockerfile: Dockerfile
+    ports: 
+      - "8080:8080"
  
