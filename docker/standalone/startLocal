@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "Starting Couchbase standalone docker image '$1'  with name '$2'"
-docker run -d --name $2 -p 8000:8000 -p 8080:8080 -p 8091-8096:8091-8096 -p 11210-11211:11210-11211 $1
-docker exec -it $2 bash 
