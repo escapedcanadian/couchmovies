@@ -1,0 +1,3 @@
+[submodule "couchbase"]
+	path = couchbase
+	url = https://github.com/escapedcanadian/couchmovies-couchbase
