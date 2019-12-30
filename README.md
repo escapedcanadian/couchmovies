@@ -9,38 +9,41 @@ This is a sample project shows how to build a search feature using Bleve/Couchba
 # Demo
 TBD
 
-## Pull and run a docker image
+## Building a new couchmovies-couchbase image
+Start by determining which version of Couchbase Server you wish to run, making sure that there is an available Docker image on [Docker Hub](https://hub.docker.com/_/couchbase). Select the appropriate tag and use it in the command below.
+
+### Pull and run a docker image
+
 ```
-pull docker couchbase
-docker run -d --name couchmovies -p 8000:8000 -p 8080:8080 -p 6459:6459 -p 8091-8096:8091-8096 -p 11210-11211:11210-11211 couchbase
-docker exec -it couchmovies bash
+pull docker couchbase:<tag>
+docker run -d --name couchmovies_couchbase_build -p 8091-8096:8091-8096 -p 11210-11211:11210-11211 couchbase:<tag>
+
 ```
-## Configure environment inside Docker
+### Configure environment inside Docker
 ```
-apt-get update
-apt-get -y  install git sudo
-useradd -m -p $(openssl passwd -1 demo) demo
-usermod -aG sudo demo
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-echo "PATH=/opt/couchbase/bin:\$PATH" >> /home/demo/.profile
-su -l demo
-git clone https://github.com/escapedcanadian/couchmovies
+docker exec -it couchmovies_couchbase_build bash
+```
+```
+apt-get update --fix-missing
+apt-get -y  install git unzip
+git clone https://github.com/escapedcanadian/couchmovies /opt/couchmovies
 
 
-cd couchmovies/build
+cd /opt/couchmovies/build
 . .env
 ./installToolsDebian
 ./createCluster
 ./loadData
 ./createRBAC
 ./resetTweets
-
-# At this point, it is prudent to check that there are three populated buckets
-# and all created indices are ready
-
-./installServicesDebian
 ```  
+At this point, it is prudent to check that there are three populated buckets and all created indices are ready
 
+### Tag and push the image to the Docker repo
+```
+docker image tag couchmovies_couchbase_build escapedcanadian/couchmovies_couchbase:<tag>
+docker push escapedcanadian/couchmovies_couchbase:<tag>
+```
 
 # Running the demo
 Other than having the server running, you need three additional processes.  While you could run these in the same temrminal and background them, I typically run them in separate terminals
