@@ -10,3 +10,6 @@
 [submodule "feeder"]
 	path = feeder
 	url = https://github.com/escapedcanadian/couchmovies-feeder
+[submodule "movieservice"]
+	path = movieservice
+	url = https://github.com/escapedcanadian/couchmovies-movieservice
